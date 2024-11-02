@@ -31,8 +31,6 @@ class Customer
         $totalAmount = 0;
         $frequentRenterPoints = 0;
 
-        $result = '';
-
         foreach ($this->rentals as $rental) {
             $thisAmount = 0;
 
@@ -67,11 +65,8 @@ class Customer
             $totalAmount += $thisAmount;
         }
 
-        // add footer lines
-        $result .= sprintf("Amount owed is %1.1f\n", $totalAmount);
-        $result .= "You earned " . $frequentRenterPoints . " frequent renter points";
+        $textStatement->addFooter($totalAmount, $frequentRenterPoints);
 
-        $statement = $textStatement->printStatement();
-        return $statement . $result;
+        return $textStatement->printStatement();
     }
 }

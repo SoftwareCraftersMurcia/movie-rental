@@ -22,6 +22,10 @@ final class TextStatement
 
     private array $movies = [];
 
+    private float $totalAmount;
+
+    private int $frequentRenterPoints;
+
     public function addName(string $name): void
     {
         $this->name = $name;
@@ -35,6 +39,12 @@ final class TextStatement
         ];
     }
 
+    public function addFooter(float $totalAmount, int $frequentRenterPoints): void
+    {
+        $this->totalAmount = $totalAmount;
+        $this->frequentRenterPoints = $frequentRenterPoints;
+    }
+
     public function printStatement(): string
     {
         $result = "Rental Record for " . $this->name . "\n";
@@ -42,6 +52,9 @@ final class TextStatement
         foreach ($this->movies as $movie) {
             $result .= sprintf("\t%s\t%1.1f\n", $movie['title'], $movie['amount']);
         }
+
+        $result .= sprintf("Amount owed is %1.1f\n", $this->totalAmount);
+        $result .= "You earned " . $this->frequentRenterPoints . " frequent renter points";
 
         return $result;
     }
