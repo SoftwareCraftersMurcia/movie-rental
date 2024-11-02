@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kata;
 
+use Kata\Movie\ChildrenMovie;
 use Kata\Movie\Movie;
 use Kata\Movie\NewReleaseMovie;
 use Kata\Movie\RegularMovie;
@@ -49,23 +50,22 @@ class Customer
 
                     break;
                 case Movie::NEW_RELEASE:
-                    $regularMovie = new NewReleaseMovie($rental->getMovie()->getTitle(), $rental->getMovie()->getPriceCode());
-                    $regularMovie->calculateAmounts($rental->getDaysRented());
+                    $newReleaseMovie = new NewReleaseMovie($rental->getMovie()->getTitle(), $rental->getMovie()->getPriceCode());
+                    $newReleaseMovie->calculateAmounts($rental->getDaysRented());
 
-                    $thisAmount += $regularMovie->amount;
-                    $frequentRenterPoints += $regularMovie->frequentRenterPoints;
+                    $thisAmount += $newReleaseMovie->amount;
+                    $frequentRenterPoints += $newReleaseMovie->frequentRenterPoints;
 
                     break;
                 case Movie::CHILDREN:
-                    $thisAmount += 1.5;
-                    if ($rental->getDaysRented() > 3) {
-                        $thisAmount += ($rental->getDaysRented() - 3) * 1.5;
-                    }
-                    // add frequent renter points
-                    $frequentRenterPoints++;
+                    $childrenMovie = new ChildrenMovie($rental->getMovie()->getTitle(), $rental->getMovie()->getPriceCode());
+                    $childrenMovie->calculateAmounts($rental->getDaysRented());
+
+                    $thisAmount += $childrenMovie->amount;
+                    $frequentRenterPoints += $childrenMovie->frequentRenterPoints;
+
                     break;
             }
-
 
             // show figures for this rental
             $statement->addMovie($rental->getMovie()->getTitle(), $thisAmount);
