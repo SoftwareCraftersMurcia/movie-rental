@@ -25,9 +25,13 @@ class Customer
 
     public function statement(): string
     {
+        $textStatement = new TextStatement();
+        $textStatement->addName($this->name);
+
         $totalAmount = 0;
         $frequentRenterPoints = 0;
-        $result = "Rental Record for " . $this->name . "\n";
+
+        $result = '';
 
         foreach ($this->rentals as $rental) {
             $thisAmount = 0;
@@ -67,6 +71,7 @@ class Customer
         $result .= sprintf("Amount owed is %1.1f\n", $totalAmount);
         $result .= "You earned " . $frequentRenterPoints . " frequent renter points";
 
-        return $result;
+        $statement = $textStatement->printStatement();
+        return $statement . $result;
     }
 }
