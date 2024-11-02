@@ -8,8 +8,9 @@ use Kata\Movie\Movie;
 
 final class Rental
 {
-    private mixed $movie;
-    private mixed $daysRented;
+    private Movie $movie;
+
+    private int $daysRented;
 
     public function __construct(Movie $movie, int $daysRented)
     {
@@ -17,12 +18,12 @@ final class Rental
         $this->daysRented = $daysRented;
     }
 
-    public function getDaysRented()
+    public function getDaysRented(): int
     {
         return $this->daysRented;
     }
 
-    public function getMovie()
+    public function getMovie(): Movie
     {
         return $this->movie;
     }

@@ -33,17 +33,15 @@ class Customer
         $frequentRenterPoints = 0;
 
         foreach ($this->rentals as $rental) {
-            $thisAmount = 0;
-
             $movie = $rental->getMovie();
             $movie->calculateAmounts($rental->getDaysRented());
 
-            $thisAmount += $movie->amount;
+            $amount = $movie->amount;
             $frequentRenterPoints += $movie->frequentRenterPoints;
 
             // show figures for this rental
-            $statement->addMovie($movie->getTitle(), $thisAmount);
-            $totalAmount += $thisAmount;
+            $statement->addMovie($movie->title, $amount);
+            $totalAmount += $amount;
         }
 
         $statement->addFooter($totalAmount, $frequentRenterPoints);
