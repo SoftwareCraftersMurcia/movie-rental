@@ -6,7 +6,6 @@ namespace KataTests;
 
 use Kata\Customer;
 use Kata\Movie\ChildrenMovie;
-use Kata\Movie\Movie;
 use Kata\Movie\NewReleaseMovie;
 use Kata\Movie\RegularMovie;
 use Kata\Printer\HtmlStatement;
@@ -19,12 +18,12 @@ class CustomerTest extends TestCase
     public function test_customer_txt_statement(): void
     {
         $customer = new Customer('Bob');
-        $customer->addRental(new Rental(new RegularMovie('Jaws', Movie::REGULAR), 2));
-        $customer->addRental(new Rental(new RegularMovie('Golden Eye', Movie::REGULAR), 3));
-        $customer->addRental(new Rental(new NewReleaseMovie('Short New', Movie::NEW_RELEASE), 1));
-        $customer->addRental(new Rental(new NewReleaseMovie('Long New', Movie::NEW_RELEASE), 2));
-        $customer->addRental(new Rental(new ChildrenMovie('Bambi', Movie::CHILDREN), 3));
-        $customer->addRental(new Rental(new ChildrenMovie('Toy Story', Movie::CHILDREN), 4));
+        $customer->addRental(new Rental(new RegularMovie('Jaws'), 2));
+        $customer->addRental(new Rental(new RegularMovie('Golden Eye'), 3));
+        $customer->addRental(new Rental(new NewReleaseMovie('Short New'), 1));
+        $customer->addRental(new Rental(new NewReleaseMovie('Long New'), 2));
+        $customer->addRental(new Rental(new ChildrenMovie('Bambi'), 3));
+        $customer->addRental(new Rental(new ChildrenMovie('Toy Story'), 4));
 
         $expected = <<<TXT
 Rental Record for Bob
@@ -45,12 +44,12 @@ TXT;
     public function test_customer_html_statement(): void
     {
         $customer = new Customer('Bob');
-        $customer->addRental(new Rental(new RegularMovie('Jaws', Movie::REGULAR), 2));
-        $customer->addRental(new Rental(new RegularMovie('Golden Eye', Movie::REGULAR), 3));
-        $customer->addRental(new Rental(new NewReleaseMovie('Short New', Movie::NEW_RELEASE), 1));
-        $customer->addRental(new Rental(new NewReleaseMovie('Long New', Movie::NEW_RELEASE), 2));
-        $customer->addRental(new Rental(new ChildrenMovie('Bambi', Movie::CHILDREN), 3));
-        $customer->addRental(new Rental(new ChildrenMovie('Toy Story', Movie::CHILDREN), 4));
+        $customer->addRental(new Rental(new RegularMovie('Jaws'), 2));
+        $customer->addRental(new Rental(new RegularMovie('Golden Eye'), 3));
+        $customer->addRental(new Rental(new NewReleaseMovie('Short New'), 1));
+        $customer->addRental(new Rental(new NewReleaseMovie('Long New'), 2));
+        $customer->addRental(new Rental(new ChildrenMovie('Bambi'), 3));
+        $customer->addRental(new Rental(new ChildrenMovie('Toy Story'), 4));
 
         $expected = <<<TXT
 <h1>Rental Record for <em>Bob</em></h1>

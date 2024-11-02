@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Kata;
 
-use Kata\Movie\ChildrenMovie;
-use Kata\Movie\Movie;
-use Kata\Movie\NewReleaseMovie;
-use Kata\Movie\RegularMovie;
 use Kata\Printer\Statement;
 
 class Customer
@@ -39,36 +35,14 @@ class Customer
         foreach ($this->rentals as $rental) {
             $thisAmount = 0;
 
-            // determine amounts for rental line
-            switch ($rental->getMovie()->getPriceCode()) {
-                case Movie::REGULAR:
-                    $regularMovie = new RegularMovie($rental->getMovie()->getTitle(), $rental->getMovie()->getPriceCode());
-                    $regularMovie->calculateAmounts($rental->getDaysRented());
+            $movie = $rental->getMovie();
+            $movie->calculateAmounts($rental->getDaysRented());
 
-                    $thisAmount += $regularMovie->amount;
-                    $frequentRenterPoints += $regularMovie->frequentRenterPoints;
-
-                    break;
-                case Movie::NEW_RELEASE:
-                    $newReleaseMovie = new NewReleaseMovie($rental->getMovie()->getTitle(), $rental->getMovie()->getPriceCode());
-                    $newReleaseMovie->calculateAmounts($rental->getDaysRented());
-
-                    $thisAmount += $newReleaseMovie->amount;
-                    $frequentRenterPoints += $newReleaseMovie->frequentRenterPoints;
-
-                    break;
-                case Movie::CHILDREN:
-                    $childrenMovie = new ChildrenMovie($rental->getMovie()->getTitle(), $rental->getMovie()->getPriceCode());
-                    $childrenMovie->calculateAmounts($rental->getDaysRented());
-
-                    $thisAmount += $childrenMovie->amount;
-                    $frequentRenterPoints += $childrenMovie->frequentRenterPoints;
-
-                    break;
-            }
+            $thisAmount += $movie->amount;
+            $frequentRenterPoints += $movie->frequentRenterPoints;
 
             // show figures for this rental
-            $statement->addMovie($rental->getMovie()->getTitle(), $thisAmount);
+            $statement->addMovie($movie->getTitle(), $thisAmount);
             $totalAmount += $thisAmount;
         }
 
