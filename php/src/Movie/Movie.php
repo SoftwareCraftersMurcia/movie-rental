@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Kata;
+namespace Kata\Movie;
 
-final class Movie
+class Movie
 {
     public const REGULAR = 0;
     public const NEW_RELEASE = 1;

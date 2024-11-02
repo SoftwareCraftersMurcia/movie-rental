@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Kata;
 
+use Kata\Movie\Movie;
+use Kata\Movie\RegularMovie;
 use Kata\Printer\Statement;
 
 class Customer
@@ -38,28 +40,33 @@ class Customer
             // determine amounts for rental line
             switch ($rental->getMovie()->getPriceCode()) {
                 case Movie::REGULAR:
-                    $thisAmount += 2;
-                    if ($rental->getDaysRented() > 2) {
-                        $thisAmount += ($rental->getDaysRented() - 2) * 1.5;
-                    }
+                    $regularMovie = new RegularMovie($rental->getMovie()->getTitle(), $rental->getMovie()->getPriceCode());
+                    $regularMovie->calculateAmounts($rental->getDaysRented());
+
+                    $thisAmount += $regularMovie->amount;
+                    $frequentRenterPoints += $regularMovie->frequentRenterPoints;
+
                     break;
                 case Movie::NEW_RELEASE:
                     $thisAmount += $rental->getDaysRented() * 3;
+
+                    // add bonus for a two day new release rental
+                    if ($rental->getDaysRented() > 1) {
+                        $frequentRenterPoints++;
+                    }
+                    // add frequent renter points
+                    $frequentRenterPoints++;
                     break;
                 case Movie::CHILDREN:
                     $thisAmount += 1.5;
                     if ($rental->getDaysRented() > 3) {
                         $thisAmount += ($rental->getDaysRented() - 3) * 1.5;
                     }
+                    // add frequent renter points
+                    $frequentRenterPoints++;
                     break;
             }
 
-            // add frequent renter points
-            $frequentRenterPoints++;
-            // add bonus for a two day new release rental
-            if (($rental->getMovie()->getPriceCode() === Movie::NEW_RELEASE) && $rental->getDaysRented() > 1) {
-                $frequentRenterPoints++;
-            }
 
             // show figures for this rental
             $statement->addMovie($rental->getMovie()->getTitle(), $thisAmount);

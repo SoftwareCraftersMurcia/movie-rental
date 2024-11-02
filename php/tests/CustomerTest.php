@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace KataTests;
 
 use Kata\Customer;
-use Kata\Movie;
+use Kata\Movie\Movie;
 use Kata\Printer\HtmlStatement;
 use Kata\Printer\TextStatement;
 use Kata\Rental;

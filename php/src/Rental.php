@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Kata;
 
+use Kata\Movie\Movie;
+
 final class Rental
 {
     private mixed $movie;
