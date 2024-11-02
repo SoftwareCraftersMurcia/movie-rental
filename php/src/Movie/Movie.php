@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Kata\Movie;
 
-class Movie
+abstract class Movie
 {
     public const REGULAR = 0;
     public const NEW_RELEASE = 1;
