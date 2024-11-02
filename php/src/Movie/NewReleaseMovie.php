@@ -6,10 +6,6 @@ namespace Kata\Movie;
 
 final class NewReleaseMovie extends Movie
 {
-    public float $amount = 0;
-
-    public int $frequentRenterPoints = 0;
-
     public function calculateAmounts(int $daysRented): void
     {
         $this->amount += $daysRented * 3;

@@ -27,4 +27,12 @@ final class Rental
     {
         return $this->movie;
     }
+
+    public function calculateAmount(): array
+    {
+        $movie = $this->getMovie();
+        $movie->calculateAmounts($this->getDaysRented());
+
+        return [$movie->amount, $movie->frequentRenterPoints];
+    }
 }
