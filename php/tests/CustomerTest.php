@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace KataTests;
 
 use Kata\Customer;
-use Kata\HtmlStatement;
 use Kata\Movie;
+use Kata\Printer\HtmlStatement;
+use Kata\Printer\TextStatement;
 use Kata\Rental;
-use Kata\TextStatement;
 use PHPUnit\Framework\TestCase;
 
 class CustomerTest extends TestCase

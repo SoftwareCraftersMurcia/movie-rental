@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kata;
+namespace Kata\Printer;
 
 final class HtmlStatement implements Statement
 {
