@@ -23,7 +23,7 @@ class Customer
         $this->rentals[] = $param;
     }
 
-    public function statement(TextStatement $statement): string
+    public function statement(Statement $statement): string
     {
         $statement->addName($this->name);
 

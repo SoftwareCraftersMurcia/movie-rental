@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Kata;
 
-final class TextStatement
+final class TextStatement implements Statement
 {
     /**
      * Rental Record for Bob
      *      Jaws        2.0
      *      Golden Eye  3.5
      *      Short New   3.0
-     *      Long New\   6.0
+     *      Long New    6.0
      *      Bambi       1.5
      *      Toy Story   3.0
      * Amount owed is 19.0
@@ -58,5 +58,4 @@ final class TextStatement
 
         return $result;
     }
-
 }
