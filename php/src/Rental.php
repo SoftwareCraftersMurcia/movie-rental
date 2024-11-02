@@ -1,25 +1,27 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Kata;
 
-class Rental
+final class Rental
 {
-    private mixed $_movie;
-    private mixed $_daysRented;
+    private mixed $movie;
+    private mixed $daysRented;
 
-    public function __construct($movie, $daysRented)
+    public function __construct(Movie $movie, int $daysRented)
     {
-        $this->_movie = $movie;
-        $this->_daysRented = $daysRented;
+        $this->movie = $movie;
+        $this->daysRented = $daysRented;
     }
 
     public function getDaysRented()
     {
-        return $this->_daysRented;
+        return $this->daysRented;
     }
 
     public function getMovie()
     {
-        return $this->_movie;
+        return $this->movie;
     }
-
 }

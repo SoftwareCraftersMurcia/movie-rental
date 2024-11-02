@@ -1,33 +1,36 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Kata;
 
-class Movie
+final class Movie
 {
-    const REGULAR = 0;
-    const NEW_RELEASE = 1;
-    const CHILDRENS = 2;
-    private mixed $_priceCode;
-    private mixed $_title;
+    public const REGULAR = 0;
+    public const NEW_RELEASE = 1;
+    public const CHILDREN = 2;
 
-    public function __construct($title, $priceCode)
+    private string $title;
+    private int $priceCode;
+
+    public function __construct(string $title, int $priceCode)
     {
-        $this->_title = $title;
-        $this->_priceCode = $priceCode;
+        $this->title = $title;
+        $this->priceCode = $priceCode;
     }
 
-    public function getPriceCode()
+    public function getPriceCode(): int
     {
-        return $this->_priceCode;
+        return $this->priceCode;
     }
 
-    public function setPriceCode(int $arg)
+    public function setPriceCode(int $arg): void
     {
-        $this->_priceCode = $arg;
+        $this->priceCode = $arg;
     }
 
-    public function getTitle()
+    public function getTitle(): string
     {
-        return $this->_title;
+        return $this->title;
     }
-
 }

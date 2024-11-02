@@ -1,55 +1,65 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Kata;
 
 class Customer
 {
-    private array $_rentals;
-    private mixed $_name;
+    /**
+     * @var list<Rental>
+     */
+    private array $rentals;
 
-    public function __construct($string)
+    private string $name;
+
+    public function __construct(string $name)
     {
-        $this->_name = $string;
+        $this->name = $name;
     }
 
-    public function addRental($param)
+    public function addRental(Rental $param): void
     {
-        $this->_rentals[] = $param;
+        $this->rentals[] = $param;
     }
 
-    public function statement()
+    public function statement(): string
     {
         $totalAmount = 0;
         $frequentRenterPoints = 0;
-        $result = "Rental Record for " . $this->getName() . "\n";
+        $result = "Rental Record for " . $this->name . "\n";
 
-        foreach ($this->_rentals as $each) {
+        foreach ($this->rentals as $rental) {
             $thisAmount = 0;
 
-            //determine amounts for each line
-            switch ($each->getMovie()->getPriceCode()) {
+            // determine amounts for rental line
+            switch ($rental->getMovie()->getPriceCode()) {
                 case Movie::REGULAR:
                     $thisAmount += 2;
-                    if ($each->getDaysRented() > 2)
-                        $thisAmount += ($each->getDaysRented() - 2) * 1.5;
+                    if ($rental->getDaysRented() > 2) {
+                        $thisAmount += ($rental->getDaysRented() - 2) * 1.5;
+                    }
                     break;
                 case Movie::NEW_RELEASE:
-                    $thisAmount += $each->getDaysRented() * 3;
+                    $thisAmount += $rental->getDaysRented() * 3;
                     break;
-                case Movie::CHILDRENS:
+                case Movie::CHILDREN:
                     $thisAmount += 1.5;
-                    if ($each->getDaysRented() > 3)
-                        $thisAmount += ($each->getDaysRented() - 3) * 1.5;
+                    if ($rental->getDaysRented() > 3) {
+                        $thisAmount += ($rental->getDaysRented() - 3) * 1.5;
+                    }
                     break;
             }
 
             // add frequent renter points
             $frequentRenterPoints++;
             // add bonus for a two day new release rental
-            if (($each->getMovie()->getPriceCode() == Movie::NEW_RELEASE) && $each->getDaysRented() > 1)
+            if (($rental->getMovie()->getPriceCode() === Movie::NEW_RELEASE) && $rental->getDaysRented() > 1) {
                 $frequentRenterPoints++;
+            }
 
             // show figures for this rental
-            $result .= sprintf("\t%s\t%1.1f\n", $each->getMovie()->getTitle(), $thisAmount);
+            $result .= sprintf("\t%s\t%1.1f\n", $rental->getMovie()->getTitle(), $thisAmount);
             $totalAmount += $thisAmount;
         }
 
@@ -58,11 +68,5 @@ class Customer
         $result .= "You earned " . $frequentRenterPoints . " frequent renter points";
 
         return $result;
-
-    }
-
-    private function getName()
-    {
-        return $this->_name;
     }
 }
