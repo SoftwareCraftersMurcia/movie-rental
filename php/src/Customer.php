@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Kata;
 
-use Kata\Printer\Statement;
-
-class Customer
+final class Customer
 {
     /**
      * @var list<Rental>
@@ -14,7 +12,7 @@ class Customer
     private array $rentals;
 
     public function __construct(
-        public string $name,
+        public readonly string $name,
     ) {
     }
 
@@ -23,25 +21,8 @@ class Customer
         $this->rentals[] = $param;
     }
 
-    public function statement(Statement $statement): string
+    public function getRentals(): array
     {
-        $statement->addName($this->name);
-
-        $totalAmount = 0;
-        $totalFrequentRenterPoints = 0;
-
-        foreach ($this->rentals as $rental) {
-            [$amount, $frequentRenterPoints] = $rental->calculateAmount();
-
-            $totalAmount += $amount;
-            $totalFrequentRenterPoints += $frequentRenterPoints;
-
-            // show figures for this rental
-            $statement->addMovie($rental->getMovie()->title, $amount);
-        }
-
-        $statement->addFooter($totalAmount, $totalFrequentRenterPoints);
-
-        return $statement->printStatement();
+        return $this->rentals;
     }
 }

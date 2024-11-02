@@ -13,17 +13,12 @@ use Kata\Printer\TextStatement;
 use Kata\Rental;
 use PHPUnit\Framework\TestCase;
 
-class CustomerTest extends TestCase
+final class CustomerTest extends TestCase
 {
     public function test_customer_txt_statement(): void
     {
-        $customer = new Customer('Bob');
-        $customer->addRental(new Rental(new RegularMovie('Jaws'), 2));
-        $customer->addRental(new Rental(new RegularMovie('Golden Eye'), 3));
-        $customer->addRental(new Rental(new NewReleaseMovie('Short New'), 1));
-        $customer->addRental(new Rental(new NewReleaseMovie('Long New'), 2));
-        $customer->addRental(new Rental(new ChildrenMovie('Bambi'), 3));
-        $customer->addRental(new Rental(new ChildrenMovie('Toy Story'), 4));
+        $customer = $this->createCustomerWithRentals();
+        $textStatement = new TextStatement($customer);
 
         $expected = <<<TXT
 Rental Record for Bob
@@ -37,19 +32,13 @@ Amount owed is 19.0
 You earned 7 frequent renter points
 TXT;
 
-        $statement = new TextStatement();
-        $this->assertSame($expected, $customer->statement($statement));
+        $this->assertSame($expected, $textStatement->printStatement());
     }
 
     public function test_customer_html_statement(): void
     {
-        $customer = new Customer('Bob');
-        $customer->addRental(new Rental(new RegularMovie('Jaws'), 2));
-        $customer->addRental(new Rental(new RegularMovie('Golden Eye'), 3));
-        $customer->addRental(new Rental(new NewReleaseMovie('Short New'), 1));
-        $customer->addRental(new Rental(new NewReleaseMovie('Long New'), 2));
-        $customer->addRental(new Rental(new ChildrenMovie('Bambi'), 3));
-        $customer->addRental(new Rental(new ChildrenMovie('Toy Story'), 4));
+        $customer = $this->createCustomerWithRentals();
+        $htmlStatement = new HtmlStatement($customer);
 
         $expected = <<<TXT
 <h1>Rental Record for <em>Bob</em></h1>
@@ -65,7 +54,19 @@ TXT;
 <p>You earned <em>7</em> frequent renter points</p>
 TXT;
 
-        $statement = new HtmlStatement();
-        $this->assertSame($expected, $customer->statement($statement));
+        $this->assertSame($expected, $htmlStatement->printStatement());
+    }
+
+    private function createCustomerWithRentals(): Customer
+    {
+        $customer = new Customer('Bob');
+        $customer->addRental(new Rental(new RegularMovie('Jaws'), 2));
+        $customer->addRental(new Rental(new RegularMovie('Golden Eye'), 3));
+        $customer->addRental(new Rental(new NewReleaseMovie('Short New'), 1));
+        $customer->addRental(new Rental(new NewReleaseMovie('Long New'), 2));
+        $customer->addRental(new Rental(new ChildrenMovie('Bambi'), 3));
+        $customer->addRental(new Rental(new ChildrenMovie('Toy Story'), 4));
+
+        return $customer;
     }
 }

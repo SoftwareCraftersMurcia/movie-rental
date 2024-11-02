@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Kata\Printer;
 
+use Kata\Customer;
+
 final class HtmlStatement implements Statement
 {
     /**
@@ -20,45 +22,32 @@ final class HtmlStatement implements Statement
      * <p>You earned <em>7</em> frequent renter points</p>
      */
 
-    private string $name;
-
-    private array $movies = [];
-
-    private float $totalAmount;
-
-    private int $frequentRenterPoints;
-
-    public function addName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    public function addMovie(string $title, float $thisAmount): void
-    {
-        $this->movies[] = [
-            'title' => $title,
-            'amount' => $thisAmount
-        ];
-    }
-
-    public function addFooter(float $totalAmount, int $frequentRenterPoints): void
-    {
-        $this->totalAmount = $totalAmount;
-        $this->frequentRenterPoints = $frequentRenterPoints;
+    public function __construct(
+        private readonly Customer $customer,
+    ) {
     }
 
     public function printStatement(): string
     {
-        $result = "<h1>Rental Record for <em>{$this->name}</em></h1>\n";
+        $result = "<h1>Rental Record for <em>{$this->customer->name}</em></h1>\n";
         $result .= "<table>\n";
 
-        foreach ($this->movies as $movie) {
-            $result .= sprintf("  <tr><td>%s</td><td>%1.1f</td></tr>\n", $movie['title'], $movie['amount']);
+        $totalAmount = 0;
+        $totalFrequentRenterPoints = 0;
+
+        foreach ($this->customer->getRentals() as $rental) {
+            [$amount, $frequentRenterPoints] = $rental->calculateAmount();
+
+            $totalAmount += $amount;
+            $totalFrequentRenterPoints += $frequentRenterPoints;
+
+            $movie = $rental->getMovie();
+            $result .= sprintf("  <tr><td>%s</td><td>%1.1f</td></tr>\n", $movie->title, $movie->amount);
         }
         $result .= "</table>\n";
 
-        $result .= sprintf("<p>Amount owed is <em>%1.1f</em></p>\n", $this->totalAmount);
-        $result .= "<p>You earned <em>{$this->frequentRenterPoints}</em> frequent renter points</p>";
+        $result .= sprintf("<p>Amount owed is <em>%1.1f</em></p>\n", $totalAmount);
+        $result .= "<p>You earned <em>{$totalFrequentRenterPoints}</em> frequent renter points</p>";
 
         return $result;
     }

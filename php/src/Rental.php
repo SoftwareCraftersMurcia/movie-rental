@@ -6,16 +6,12 @@ namespace Kata;
 
 use Kata\Movie\Movie;
 
-final class Rental
+final readonly class Rental
 {
-    private Movie $movie;
-
-    private int $daysRented;
-
-    public function __construct(Movie $movie, int $daysRented)
-    {
-        $this->movie = $movie;
-        $this->daysRented = $daysRented;
+    public function __construct(
+        private Movie $movie,
+        private int $daysRented
+    ) {
     }
 
     public function getDaysRented(): int

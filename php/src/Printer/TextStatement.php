@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Kata\Printer;
 
+use Kata\Customer;
+
 final class TextStatement implements Statement
 {
     /**
@@ -18,43 +20,30 @@ final class TextStatement implements Statement
      * You earned 7 frequent renter points
      */
 
-    private string $name;
-
-    private array $movies = [];
-
-    private float $totalAmount;
-
-    private int $frequentRenterPoints;
-
-    public function addName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    public function addMovie(string $title, float $thisAmount): void
-    {
-        $this->movies[] = [
-            'title' => $title,
-            'amount' => $thisAmount
-        ];
-    }
-
-    public function addFooter(float $totalAmount, int $frequentRenterPoints): void
-    {
-        $this->totalAmount = $totalAmount;
-        $this->frequentRenterPoints = $frequentRenterPoints;
+    public function __construct(
+        private readonly Customer $customer,
+    ) {
     }
 
     public function printStatement(): string
     {
-        $result = "Rental Record for " . $this->name . "\n";
+        $result = "Rental Record for " . $this->customer->name . "\n";
 
-        foreach ($this->movies as $movie) {
-            $result .= sprintf("\t%s\t%1.1f\n", $movie['title'], $movie['amount']);
+        $totalAmount = 0;
+        $totalFrequentRenterPoints = 0;
+
+        foreach ($this->customer->getRentals() as $rental) {
+            [$amount, $frequentRenterPoints] = $rental->calculateAmount();
+
+            $totalAmount += $amount;
+            $totalFrequentRenterPoints += $frequentRenterPoints;
+
+            $movie = $rental->getMovie();
+            $result .= sprintf("\t%s\t%1.1f\n", $movie->title, $movie->amount);
         }
 
-        $result .= sprintf("Amount owed is %1.1f\n", $this->totalAmount);
-        $result .= "You earned " . $this->frequentRenterPoints . " frequent renter points";
+        $result .= sprintf("Amount owed is %1.1f\n", $totalAmount);
+        $result .= "You earned " . $totalFrequentRenterPoints . " frequent renter points";
 
         return $result;
     }
