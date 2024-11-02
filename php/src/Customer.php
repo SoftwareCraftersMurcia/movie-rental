@@ -63,7 +63,7 @@ class Customer
             }
 
             // show figures for this rental
-            $result .= sprintf("\t%s\t%1.1f\n", $rental->getMovie()->getTitle(), $thisAmount);
+            $textStatement->addMovie($rental->getMovie()->getTitle(), $thisAmount);
             $totalAmount += $thisAmount;
         }
 

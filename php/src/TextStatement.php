@@ -20,15 +20,30 @@ final class TextStatement
 
     private string $name;
 
+    private array $movies = [];
+
     public function addName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function addMovie(string $title, float $thisAmount): void
+    {
+        $this->movies[] = [
+            'title' => $title,
+            'amount' => $thisAmount
+        ];
     }
 
     public function printStatement(): string
     {
         $result = "Rental Record for " . $this->name . "\n";
 
+        foreach ($this->movies as $movie) {
+            $result .= sprintf("\t%s\t%1.1f\n", $movie['title'], $movie['amount']);
+        }
+
         return $result;
     }
+
 }
