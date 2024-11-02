@@ -7,6 +7,7 @@ namespace KataTests;
 use Kata\Customer;
 use Kata\Movie;
 use Kata\Rental;
+use Kata\TextStatement;
 use PHPUnit\Framework\TestCase;
 
 class CustomerTest extends TestCase
@@ -33,7 +34,8 @@ Amount owed is 19.0
 You earned 7 frequent renter points
 TXT;
 
-        $this->assertSame($expected, $customer->statement());
+        $textStatement = new TextStatement();
+        $this->assertSame($expected, $customer->statement($textStatement));
     }
 
 //    public function test_response_html(): void

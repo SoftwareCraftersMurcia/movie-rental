@@ -23,10 +23,9 @@ class Customer
         $this->rentals[] = $param;
     }
 
-    public function statement(): string
+    public function statement(TextStatement $statement): string
     {
-        $textStatement = new TextStatement();
-        $textStatement->addName($this->name);
+        $statement->addName($this->name);
 
         $totalAmount = 0;
         $frequentRenterPoints = 0;
@@ -61,12 +60,12 @@ class Customer
             }
 
             // show figures for this rental
-            $textStatement->addMovie($rental->getMovie()->getTitle(), $thisAmount);
+            $statement->addMovie($rental->getMovie()->getTitle(), $thisAmount);
             $totalAmount += $thisAmount;
         }
 
-        $textStatement->addFooter($totalAmount, $frequentRenterPoints);
+        $statement->addFooter($totalAmount, $frequentRenterPoints);
 
-        return $textStatement->printStatement();
+        return $statement->printStatement();
     }
 }
