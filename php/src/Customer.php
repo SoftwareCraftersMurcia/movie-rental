@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kata;
 
 use Kata\Movie\Movie;
+use Kata\Movie\NewReleaseMovie;
 use Kata\Movie\RegularMovie;
 use Kata\Printer\Statement;
 
@@ -48,14 +49,12 @@ class Customer
 
                     break;
                 case Movie::NEW_RELEASE:
-                    $thisAmount += $rental->getDaysRented() * 3;
+                    $regularMovie = new NewReleaseMovie($rental->getMovie()->getTitle(), $rental->getMovie()->getPriceCode());
+                    $regularMovie->calculateAmounts($rental->getDaysRented());
 
-                    // add bonus for a two day new release rental
-                    if ($rental->getDaysRented() > 1) {
-                        $frequentRenterPoints++;
-                    }
-                    // add frequent renter points
-                    $frequentRenterPoints++;
+                    $thisAmount += $regularMovie->amount;
+                    $frequentRenterPoints += $regularMovie->frequentRenterPoints;
+
                     break;
                 case Movie::CHILDREN:
                     $thisAmount += 1.5;
