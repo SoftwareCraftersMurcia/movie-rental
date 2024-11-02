@@ -6,7 +6,7 @@ namespace Kata\Printer;
 
 use Kata\Customer;
 
-final class HtmlStatement implements Statement
+final readonly class HtmlStatement implements Statement
 {
     /**
      * <h1>Rental Record for <em>Bob</em></h1>
@@ -23,7 +23,7 @@ final class HtmlStatement implements Statement
      */
 
     public function __construct(
-        private readonly Customer $customer,
+        private Customer $customer,
     ) {
     }
 
@@ -36,13 +36,13 @@ final class HtmlStatement implements Statement
         $totalFrequentRenterPoints = 0;
 
         foreach ($this->customer->getRentals() as $rental) {
-            [$amount, $frequentRenterPoints] = $rental->calculateAmount();
+            $amount = $rental->calculateAmount();
+            $frequentRenterPoints = $rental->calculateFrequentRenterPoints();
 
             $totalAmount += $amount;
             $totalFrequentRenterPoints += $frequentRenterPoints;
 
-            $movie = $rental->getMovie();
-            $result .= sprintf("  <tr><td>%s</td><td>%1.1f</td></tr>\n", $movie->title, $movie->amount);
+            $result .= sprintf("  <tr><td>%s</td><td>%1.1f</td></tr>\n", $rental->movieTitle(), $amount);
         }
         $result .= "</table>\n";
 

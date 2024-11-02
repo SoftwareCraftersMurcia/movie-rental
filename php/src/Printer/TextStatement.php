@@ -6,7 +6,7 @@ namespace Kata\Printer;
 
 use Kata\Customer;
 
-final class TextStatement implements Statement
+final readonly class TextStatement implements Statement
 {
     /**
      * Rental Record for Bob
@@ -21,7 +21,7 @@ final class TextStatement implements Statement
      */
 
     public function __construct(
-        private readonly Customer $customer,
+        private Customer $customer,
     ) {
     }
 
@@ -33,13 +33,13 @@ final class TextStatement implements Statement
         $totalFrequentRenterPoints = 0;
 
         foreach ($this->customer->getRentals() as $rental) {
-            [$amount, $frequentRenterPoints] = $rental->calculateAmount();
+            $amount = $rental->calculateAmount();
+            $frequentRenterPoints = $rental->calculateFrequentRenterPoints();
 
             $totalAmount += $amount;
             $totalFrequentRenterPoints += $frequentRenterPoints;
 
-            $movie = $rental->getMovie();
-            $result .= sprintf("\t%s\t%1.1f\n", $movie->title, $movie->amount);
+            $result .= sprintf("\t%s\t%1.1f\n", $rental->movieTitle(), $amount);
         }
 
         $result .= sprintf("Amount owed is %1.1f\n", $totalAmount);

@@ -4,16 +4,25 @@ declare(strict_types=1);
 
 namespace Kata\Movie;
 
-final class ChildrenMovie extends Movie
+final readonly class ChildrenMovie implements Movie
 {
-    public function calculateAmounts(int $daysRented): void
+    public function __construct(
+        public string $title,
+    ) {
+    }
+
+    public function calculateAmounts(int $daysRented): float
     {
-        $this->amount += 1.5;
+        $amount = 1.5;
         if ($daysRented > 3) {
-            $this->amount += ($daysRented - 3) * 1.5;
+            $amount += ($daysRented - 3) * 1.5;
         }
 
-        // add frequent renter points
-        $this->frequentRenterPoints++;
+        return $amount;
+    }
+
+    public function calculateFrequentRenterPoints(int $daysRented): int
+    {
+        return 1;
     }
 }

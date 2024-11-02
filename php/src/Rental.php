@@ -14,21 +14,18 @@ final readonly class Rental
     ) {
     }
 
-    public function getDaysRented(): int
+    public function movieTitle(): string
     {
-        return $this->daysRented;
+        return $this->movie->title;
     }
 
-    public function getMovie(): Movie
+    public function calculateAmount(): float
     {
-        return $this->movie;
+        return $this->movie->calculateAmounts($this->daysRented);
     }
 
-    public function calculateAmount(): array
+    public function calculateFrequentRenterPoints(): int
     {
-        $movie = $this->getMovie();
-        $movie->calculateAmounts($this->getDaysRented());
-
-        return [$movie->amount, $movie->frequentRenterPoints];
+        return $this->movie->calculateFrequentRenterPoints($this->daysRented);
     }
 }

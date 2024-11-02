@@ -4,16 +4,9 @@ declare(strict_types=1);
 
 namespace Kata\Movie;
 
-abstract class Movie
+interface Movie
 {
-    public float $amount = 0;
+    public function calculateAmounts(int $daysRented): float;
 
-    public int $frequentRenterPoints = 0;
-
-    public function __construct(
-        public readonly string $title,
-    ) {
-    }
-
-    abstract public function calculateAmounts(int $daysRented): void;
+    public function calculateFrequentRenterPoints(int $daysRented): int;
 }
