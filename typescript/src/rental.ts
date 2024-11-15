@@ -1,5 +1,4 @@
 import {Movie} from "./movie";
-import {PriceCode} from "./priceCode";
 
 export class Rental {
 
@@ -16,11 +15,7 @@ export class Rental {
     }
 
     public getFrequentPoints() {
-        if (this.movie.getPriceCode() === PriceCode.NEW_RELEASE && this.daysRented > 1) {
-            return 2;
-        } else {
-            return 1;
-        }
+        return this.movie.getFrequentPoints(this.daysRented);
     }
 
     public getTitle() {

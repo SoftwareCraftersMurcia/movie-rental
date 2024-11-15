@@ -24,5 +24,13 @@ export class Movie {
     public getTitle(): string {
         return this.title;
     }
+
+    public getFrequentPoints(daysRented: number) {
+        if (this.priceCode === PriceCode.NEW_RELEASE && daysRented > 1) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
 }
 
