@@ -13,8 +13,8 @@ describe("Customer", () => {
         customer.addRental(new Rental(new Movie("Golden Eye", PriceCode.REGULAR), 3));
         customer.addRental(new Rental(new Movie("Short New", PriceCode.NEW_RELEASE), 1));
         customer.addRental(new Rental(new Movie("Long New", PriceCode.NEW_RELEASE), 2));
-        customer.addRental(new Rental(new Movie("Bambi", PriceCode.CHILDRENS), 3));
-        customer.addRental(new Rental(new Movie("Toy Story", PriceCode.CHILDRENS), 4));
+        customer.addRental(new Rental(new Movie("Bambi", PriceCode.CHILDREN), 3));
+        customer.addRental(new Rental(new Movie("Toy Story", PriceCode.CHILDREN), 4));
     });
 
     it("should format using console format", () => {

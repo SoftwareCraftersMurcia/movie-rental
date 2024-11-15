@@ -23,7 +23,7 @@ export class Rental {
             case PriceCode.NEW_RELEASE:
                 thisAmount = this.daysRented * 3;
                 break;
-            case PriceCode.CHILDRENS:
+            case PriceCode.CHILDREN:
                 thisAmount = 1.5;
                 if (this.daysRented > 3) {
                     thisAmount += (this.daysRented - 3) * 1.5;
