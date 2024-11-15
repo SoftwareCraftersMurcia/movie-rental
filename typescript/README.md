@@ -7,6 +7,7 @@ Starting point [Github repository](https://github.com/SoftwareCraftersMurcia/mov
 
 # Problem
 Add a new formatter to print a history of customer rentals.
+
 [Extended version](https://github.com/SoftwareCraftersMurcia/movie-rental/blob/main/README.md)
 
 # Solution
@@ -17,5 +18,6 @@ Add a new formatter to print a history of customer rentals.
 
 # Methodology
 1. Make small changes to ensure tests pass consistently.
-2. everage the IDE whenever possible for refactoring.
-3. Favor composition over inheritance.
+2. Commit frequently. [See history](https://github.com/luisrovirosa/movie-rental/commits/main/).
+3. Leverage the IDE whenever possible for refactoring.
+4. Favor composition over inheritance.
