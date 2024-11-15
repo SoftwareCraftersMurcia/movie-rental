@@ -2,7 +2,7 @@ import { Movie } from "./movie";
 import { Rental } from "./rental";
 
 function getPrice(rental: Rental) {
-  return rental.getPrice(rental);
+  return rental.getPrice();
 }
 
 export class Customer {
