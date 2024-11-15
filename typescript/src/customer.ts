@@ -1,5 +1,5 @@
 import {Rental} from "./rental";
-import {ConsoleFormatter} from "./consoleFormatter";
+import {Formatter} from "./formatter";
 
 export class Customer {
     private name: string;
@@ -17,8 +17,8 @@ export class Customer {
         return this.name;
     }
 
-    public statement(): string {
-        return new ConsoleFormatter().format(this);
+    public statement(formatter: Formatter): string {
+        return formatter.format(this);
     }
 
     public getFrequentRenterPoints() {

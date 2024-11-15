@@ -1,6 +1,7 @@
 import {Customer} from "./customer";
+import {Formatter} from "./formatter";
 
-export class ConsoleFormatter {
+export class ConsoleFormatter implements Formatter {
     format(customer: Customer) {
         let result = "Rental Record for " + customer.getName() + "\n";
 

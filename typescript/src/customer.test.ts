@@ -1,6 +1,7 @@
 import {Customer} from "./customer";
 import {Rental} from "./rental";
 import {Movie} from "./movie";
+import {ConsoleFormatter} from "./consoleFormatter";
 
 describe("Customer", () => {
     it("should test", () => {
@@ -23,6 +24,6 @@ describe("Customer", () => {
             "Amount owed is 19.0\n" +
             "You earned 7 frequent renter points";
 
-        expect(customer.statement()).toBe(expected);
+        expect(customer.statement(new ConsoleFormatter())).toBe(expected);
     });
 });
