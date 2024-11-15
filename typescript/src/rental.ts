@@ -10,30 +10,22 @@ export class Rental {
         this.daysRented = daysRented;
     }
 
-    public getDaysRented(): number {
-        return this.daysRented;
-    }
-
-    public getMovie(): Movie {
-        return this.movie;
-    }
-
     public getPrice() {
         let thisAmount = 0;
-        switch (this.getMovie().getPriceCode()) {
+        switch (this.movie.getPriceCode()) {
             case Movie.REGULAR:
                 thisAmount = 2;
-                if (this.getDaysRented() > 2) {
-                    thisAmount += (this.getDaysRented() - 2) * 1.5;
+                if (this.daysRented > 2) {
+                    thisAmount += (this.daysRented - 2) * 1.5;
                 }
                 break;
             case Movie.NEW_RELEASE:
-                thisAmount = this.getDaysRented() * 3;
+                thisAmount = this.daysRented * 3;
                 break;
             case Movie.CHILDRENS:
                 thisAmount = 1.5;
-                if (this.getDaysRented() > 3) {
-                    thisAmount += (this.getDaysRented() - 3) * 1.5;
+                if (this.daysRented > 3) {
+                    thisAmount += (this.daysRented - 3) * 1.5;
                 }
                 break;
         }
@@ -42,8 +34,8 @@ export class Rental {
 
     public getFrequentPoints() {
         if (
-            this.getMovie().getPriceCode() === Movie.NEW_RELEASE &&
-            this.getDaysRented() > 1
+            this.movie.getPriceCode() === Movie.NEW_RELEASE &&
+            this.daysRented > 1
         ) {
             return 2;
         } else {
