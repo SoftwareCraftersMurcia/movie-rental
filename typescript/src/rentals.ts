@@ -14,4 +14,8 @@ export class Rentals {
     getTotalAmount() {
         return this.rentals.reduce((acc, rental) => acc + rental.getPrice(), 0)
     }
+
+    map(fn: (rental: Rental) => void) {
+        this.rentals.map(rental => fn(rental));
+    }
 }
