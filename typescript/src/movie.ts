@@ -1,4 +1,4 @@
-import {MovieType} from "./movieType";
+import {MovieType} from "./movieType/movieType";
 
 export class Movie {
     private readonly title: string;

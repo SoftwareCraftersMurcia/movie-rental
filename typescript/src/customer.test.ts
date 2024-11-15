@@ -3,9 +3,9 @@ import {Rental} from "./rental";
 import {Movie} from "./movie";
 import {ConsoleFormatter} from "./consoleFormatter";
 import {HtmlFormatter} from "./htmlFormatter";
-import {RegularMovie} from "./regularMovie";
-import {NewReleaseMovie} from "./newReleaseMovie";
-import {ChildrenMovie} from "./childrenMovie";
+import {RegularMovie} from "./movieType/regularMovie";
+import {NewReleaseMovie} from "./movieType/newReleaseMovie";
+import {ChildrenMovie} from "./movieType/childrenMovie";
 
 describe("Customer", () => {
     let customer: Customer;
