@@ -1,6 +1,18 @@
 import {Movie} from "./movie";
 import {Rental} from "./rental";
 
+function getFrequentPoints(rental: Rental) {
+  let frequentRenterPoints = 0;
+  frequentRenterPoints++;
+  // add bonus for a two day new release rental
+  if (
+      rental.getMovie().getPriceCode() === Movie.NEW_RELEASE &&
+      rental.getDaysRented() > 1
+  )
+    frequentRenterPoints++;
+  return frequentRenterPoints;
+}
+
 export class Customer {
   private name: string;
   private rentals: Rental[] = [];
@@ -24,18 +36,8 @@ export class Customer {
 
     for (const rental of this.rentals) {
       let thisAmount = 0;
-
-      // determine amounts for each line
       thisAmount += rental.getPrice();
-
-      // add frequent renter points
-      frequentRenterPoints++;
-      // add bonus for a two day new release rental
-      if (
-        rental.getMovie().getPriceCode() === Movie.NEW_RELEASE &&
-        rental.getDaysRented() > 1
-      )
-        frequentRenterPoints++;
+      frequentRenterPoints += getFrequentPoints(rental);
 
       // show figures for this rental
       result +=
