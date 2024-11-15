@@ -10,15 +10,15 @@ export class Rental {
         this.daysRented = daysRented;
     }
 
-    public getPrice() {
+    public getPrice(): number {
         return this.movie.getPrice(this.daysRented);
     }
 
-    public getFrequentPoints() {
+    public getFrequentPoints(): number {
         return this.movie.getFrequentPoints(this.daysRented);
     }
 
-    public getTitle() {
+    public getTitle(): string {
         return this.movie.getTitle();
     }
 }

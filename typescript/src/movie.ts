@@ -17,7 +17,7 @@ export class Movie {
         return this.movieType.priceFor(numberOfDaysRented);
     }
 
-    public getFrequentPoints(daysRented: number) {
+    public getFrequentPoints(daysRented: number): number {
         return this.movieType.pointsFor(daysRented);
     }
 }
