@@ -1,8 +1,8 @@
 import {PriceCode} from "./priceCode";
 
 export class Movie {
-    private title: string;
-    private priceCode: PriceCode;
+    private readonly title: string;
+    private readonly priceCode: PriceCode;
 
     public constructor(title: string, priceCode: PriceCode) {
         this.title = title;
