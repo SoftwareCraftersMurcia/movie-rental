@@ -1,33 +1,18 @@
 import {Movie} from "./movie";
 import {PriceCode} from "./priceCode";
-import {RegularPrice} from "./regularPrice";
-import {NewReleasePrice} from "./newReleasePrice";
-import {ChildrenPrice} from "./childrenPrice";
 
 export class Rental {
 
     private readonly movie: Movie;
     private readonly daysRented: number;
-    private readonly price: RegularPrice;
 
     public constructor(movie: Movie, daysRented: number) {
         this.movie = movie;
         this.daysRented = daysRented;
-        switch (this.movie.getPriceCode()) {
-            case PriceCode.REGULAR:
-                this.price = new RegularPrice();
-                break;
-            case PriceCode.NEW_RELEASE:
-                this.price = new NewReleasePrice();
-                break;
-            case PriceCode.CHILDREN:
-                this.price = new ChildrenPrice();
-                break;
-        }
     }
 
     public getPrice() {
-        return this.price.priceFor(this.daysRented);
+        return this.movie.getPrice(this.daysRented);
     }
 
     public getFrequentPoints() {

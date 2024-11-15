@@ -4,6 +4,9 @@ import {Movie} from "./movie";
 import {ConsoleFormatter} from "./consoleFormatter";
 import {HtmlFormatter} from "./htmlFormatter";
 import {PriceCode} from "./priceCode";
+import {RegularPrice} from "./regularPrice";
+import {NewReleasePrice} from "./newReleasePrice";
+import {ChildrenPrice} from "./childrenPrice";
 
 describe("Customer", () => {
     let customer: Customer;
