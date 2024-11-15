@@ -16,6 +16,6 @@ export class Rentals {
     }
 
     map(fn: (rental: Rental) => any): any[] {
-        return this.rentals.map(rental => fn(rental));
+        return this.rentals.map((rental: Rental) => fn(rental));
     }
 }
