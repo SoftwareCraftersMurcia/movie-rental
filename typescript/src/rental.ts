@@ -1,9 +1,10 @@
 import {Movie} from "./movie";
+import {PriceCode} from "./priceCode";
 
 export class Rental {
 
-    private movie: Movie;
-    private daysRented: number;
+    private readonly movie: Movie;
+    private readonly daysRented: number;
 
     public constructor(movie: Movie, daysRented: number) {
         this.movie = movie;
@@ -13,16 +14,16 @@ export class Rental {
     public getPrice() {
         let thisAmount = 0;
         switch (this.movie.getPriceCode()) {
-            case Movie.REGULAR:
+            case PriceCode.REGULAR:
                 thisAmount = 2;
                 if (this.daysRented > 2) {
                     thisAmount += (this.daysRented - 2) * 1.5;
                 }
                 break;
-            case Movie.NEW_RELEASE:
+            case PriceCode.NEW_RELEASE:
                 thisAmount = this.daysRented * 3;
                 break;
-            case Movie.CHILDRENS:
+            case PriceCode.CHILDRENS:
                 thisAmount = 1.5;
                 if (this.daysRented > 3) {
                     thisAmount += (this.daysRented - 3) * 1.5;
@@ -33,7 +34,7 @@ export class Rental {
     }
 
     public getFrequentPoints() {
-        if (this.movie.getPriceCode() === Movie.NEW_RELEASE && this.daysRented > 1) {
+        if (this.movie.getPriceCode() === PriceCode.NEW_RELEASE && this.daysRented > 1) {
             return 2;
         } else {
             return 1;
