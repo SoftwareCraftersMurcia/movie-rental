@@ -17,7 +17,6 @@ export class Customer {
   }
 
   public statement(): string {
-    let totalAmount: number = 0;
     let frequentRenterPoints: number = 0;
     let result = "Rental Record for " + this.getName() + "\n";
 
@@ -31,13 +30,16 @@ export class Customer {
         "\t" +
         thisAmount.toFixed(1) +
         "\n";
-      totalAmount += thisAmount;
     }
 
     // add footer lines
-    result += "Amount owed is " + totalAmount.toFixed(1) + "\n";
+    result += "Amount owed is " + this.getTotalAmount().toFixed(1) + "\n";
     result += "You earned " + frequentRenterPoints + " frequent renter points";
 
     return result;
+  }
+
+  private getTotalAmount() {
+    return this.rentals.reduce((acc, rental) => acc + rental.getPrice(), 0);
   }
 }
