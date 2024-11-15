@@ -12,12 +12,12 @@ describe("Customer", () => {
     let customer: Customer;
     beforeEach(() => {
         customer = new Customer("Bob");
-        customer.addRental(new Rental(new Movie("Jaws", PriceCode.REGULAR), 2));
-        customer.addRental(new Rental(new Movie("Golden Eye", PriceCode.REGULAR), 3));
-        customer.addRental(new Rental(new Movie("Short New", PriceCode.NEW_RELEASE), 1));
-        customer.addRental(new Rental(new Movie("Long New", PriceCode.NEW_RELEASE), 2));
-        customer.addRental(new Rental(new Movie("Bambi", PriceCode.CHILDREN), 3));
-        customer.addRental(new Rental(new Movie("Toy Story", PriceCode.CHILDREN), 4));
+        customer.addRental(new Rental(new Movie("Jaws", PriceCode.REGULAR, new RegularPrice()), 2));
+        customer.addRental(new Rental(new Movie("Golden Eye", PriceCode.REGULAR, new RegularPrice()), 3));
+        customer.addRental(new Rental(new Movie("Short New", PriceCode.NEW_RELEASE, new NewReleasePrice()), 1));
+        customer.addRental(new Rental(new Movie("Long New", PriceCode.NEW_RELEASE, new NewReleasePrice()), 2));
+        customer.addRental(new Rental(new Movie("Bambi", PriceCode.CHILDREN, new ChildrenPrice()), 3));
+        customer.addRental(new Rental(new Movie("Toy Story", PriceCode.CHILDREN, new ChildrenPrice()), 4));
     });
 
     it("should format using console format", () => {

@@ -1,27 +1,16 @@
 import {PriceCode} from "./priceCode";
 import {RegularPrice} from "./regularPrice";
-import {NewReleasePrice} from "./newReleasePrice";
-import {ChildrenPrice} from "./childrenPrice";
+import {Price} from "./price";
 
 export class Movie {
     private readonly title: string;
     private readonly priceCode: PriceCode;
     private readonly price: RegularPrice;
 
-    public constructor(title: string, priceCode: PriceCode) {
+    public constructor(title: string, priceCode: PriceCode, price: Price) {
         this.title = title;
         this.priceCode = priceCode;
-        switch (this.priceCode) {
-            case PriceCode.REGULAR:
-                this.price = new RegularPrice();
-                break;
-            case PriceCode.NEW_RELEASE:
-                this.price = new NewReleasePrice();
-                break;
-            case PriceCode.CHILDREN:
-                this.price = new ChildrenPrice();
-                break;
-        }
+        this.price = price;
     }
 
     public getPriceCode(): number {
