@@ -3,20 +3,20 @@ import {Rental} from "./rental";
 import {Movie} from "./movie";
 import {ConsoleFormatter} from "./consoleFormatter";
 import {HtmlFormatter} from "./htmlFormatter";
-import {RegularPrice} from "./regularPrice";
-import {NewReleasePrice} from "./newReleasePrice";
-import {ChildrenPrice} from "./childrenPrice";
+import {RegularMovie} from "./regularMovie";
+import {NewReleaseMovie} from "./newReleaseMovie";
+import {ChildrenMovie} from "./childrenMovie";
 
 describe("Customer", () => {
     let customer: Customer;
     beforeEach(() => {
         customer = new Customer("Bob");
-        customer.addRental(new Rental(new Movie("Jaws", new RegularPrice()), 2));
-        customer.addRental(new Rental(new Movie("Golden Eye", new RegularPrice()), 3));
-        customer.addRental(new Rental(new Movie("Short New", new NewReleasePrice()), 1));
-        customer.addRental(new Rental(new Movie("Long New", new NewReleasePrice()), 2));
-        customer.addRental(new Rental(new Movie("Bambi", new ChildrenPrice()), 3));
-        customer.addRental(new Rental(new Movie("Toy Story", new ChildrenPrice()), 4));
+        customer.addRental(new Rental(new Movie("Jaws", new RegularMovie()), 2));
+        customer.addRental(new Rental(new Movie("Golden Eye", new RegularMovie()), 3));
+        customer.addRental(new Rental(new Movie("Short New", new NewReleaseMovie()), 1));
+        customer.addRental(new Rental(new Movie("Long New", new NewReleaseMovie()), 2));
+        customer.addRental(new Rental(new Movie("Bambi", new ChildrenMovie()), 3));
+        customer.addRental(new Rental(new Movie("Toy Story", new ChildrenMovie()), 4));
     });
 
     it("should format using console format", () => {

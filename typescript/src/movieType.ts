@@ -1,3 +1,3 @@
-export interface Price {
+export interface MovieType {
     priceFor(daysRented: number): number;
 }

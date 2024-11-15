@@ -1,18 +1,17 @@
-import {RegularPrice} from "./regularPrice";
-import {Price} from "./price";
-import {NewReleasePrice} from "./newReleasePrice";
+import {MovieType} from "./movieType";
+import {NewReleaseMovie} from "./newReleaseMovie";
 
 export class Movie {
     private readonly title: string;
-    private readonly price: RegularPrice;
+    private readonly movieType: MovieType;
 
-    public constructor(title: string, price: Price) {
+    public constructor(title: string, movieType: MovieType) {
         this.title = title;
-        this.price = price;
+        this.movieType = movieType;
     }
 
     public getPrice(numberOfDaysRented: number): number {
-        return this.price.priceFor(numberOfDaysRented);
+        return this.movieType.priceFor(numberOfDaysRented);
     }
 
     public getTitle(): string {
@@ -20,7 +19,7 @@ export class Movie {
     }
 
     public getFrequentPoints(daysRented: number) {
-        if (this.price instanceof NewReleasePrice && daysRented > 1) {
+        if (this.movieType instanceof NewReleaseMovie && daysRented > 1) {
             return 2;
         } else {
             return 1;
