@@ -9,12 +9,12 @@ export class Movie {
         this.movieType = movieType;
     }
 
-    public getPrice(numberOfDaysRented: number): number {
-        return this.movieType.priceFor(numberOfDaysRented);
-    }
-
     public getTitle(): string {
         return this.title;
+    }
+
+    public getPrice(numberOfDaysRented: number): number {
+        return this.movieType.priceFor(numberOfDaysRented);
     }
 
     public getFrequentPoints(daysRented: number) {
