@@ -1,9 +1,5 @@
-import { Movie } from "./movie";
-import { Rental } from "./rental";
-
-function getPrice(rental: Rental) {
-  return rental.getPrice();
-}
+import {Movie} from "./movie";
+import {Rental} from "./rental";
 
 export class Customer {
   private name: string;
@@ -30,7 +26,7 @@ export class Customer {
       let thisAmount = 0;
 
       // determine amounts for each line
-      thisAmount += getPrice(rental);
+      thisAmount += rental.getPrice();
 
       // add frequent renter points
       frequentRenterPoints++;
