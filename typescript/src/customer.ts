@@ -1,9 +1,4 @@
-import {Movie} from "./movie";
 import {Rental} from "./rental";
-
-function getFrequentPoints(rental: Rental) {
-  return rental.getFrequentPoints();
-}
 
 export class Customer {
   private name: string;
@@ -29,9 +24,7 @@ export class Customer {
     for (const rental of this.rentals) {
       let thisAmount = 0;
       thisAmount += rental.getPrice();
-      frequentRenterPoints += getFrequentPoints(rental);
-
-      // show figures for this rental
+      frequentRenterPoints += rental.getFrequentPoints();
       result +=
         "\t" +
         rental.getMovie().getTitle() +
