@@ -17,6 +17,7 @@ export class Rental {
     public getMovie(): Movie {
         return this.movie;
     }
+
     public getPrice() {
         let thisAmount = 0;
         switch (this.getMovie().getPriceCode()) {
@@ -40,14 +41,13 @@ export class Rental {
     }
 
     public getFrequentPoints() {
-        let frequentRenterPoints = 0;
-        frequentRenterPoints++;
-        // add bonus for a two day new release rental
         if (
             this.getMovie().getPriceCode() === Movie.NEW_RELEASE &&
             this.getDaysRented() > 1
-        )
-            frequentRenterPoints++;
-        return frequentRenterPoints;
+        ) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 }
