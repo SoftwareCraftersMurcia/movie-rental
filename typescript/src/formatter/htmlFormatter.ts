@@ -1,7 +1,7 @@
 import {Formatter} from "./formatter";
-import {Customer} from "./customer";
-import {Rentals} from "./rentals";
-import {Rental} from "./rental";
+import {Customer} from "../customer";
+import {Rentals} from "../rentals";
+import {Rental} from "../rental";
 
 export class HtmlFormatter implements Formatter {
     format(customer: Customer, rentals: Rentals): string {

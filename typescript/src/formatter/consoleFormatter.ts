@@ -1,7 +1,7 @@
-import {Customer} from "./customer";
+import {Customer} from "../customer";
 import {Formatter} from "./formatter";
-import {Rentals} from "./rentals";
-import {Rental} from "./rental";
+import {Rentals} from "../rentals";
+import {Rental} from "../rental";
 
 export class ConsoleFormatter implements Formatter {
     format(customer: Customer, rentals: Rentals): string {

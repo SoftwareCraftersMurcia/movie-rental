@@ -1,5 +1,5 @@
 import {Rental} from "./rental";
-import {Formatter} from "./formatter";
+import {Formatter} from "./formatter/formatter";
 import {Rentals} from "./rentals";
 
 export class Customer {
