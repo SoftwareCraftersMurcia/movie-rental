@@ -2,6 +2,7 @@ import {Customer} from "./customer";
 import {Rental} from "./rental";
 import {Movie} from "./movie";
 import {ConsoleFormatter} from "./consoleFormatter";
+import {HtmlFormatter} from "./htmlFormatter";
 
 describe("Customer", () => {
     let customer: Customer;
@@ -28,5 +29,22 @@ describe("Customer", () => {
             "You earned 7 frequent renter points";
 
         expect(customer.statement(new ConsoleFormatter())).toBe(expected);
+    });
+
+    it("should format using html format", () => {
+        const expected = '' +
+            '<h1>Rental Record for <em>Bob</em></h1>\n' +
+            '<table>\n' +
+            '  <tr><td>Jaws</td><td>2.0</td></tr>\n' +
+            '  <tr><td>Golden Eye</td><td>3.5</td></tr>\n' +
+            '  <tr><td>Short New</td><td>3.0</td></tr>\n' +
+            '  <tr><td>Long New</td><td>6.0</td></tr>\n' +
+            '  <tr><td>Bambi</td><td>1.5</td></tr>\n' +
+            '  <tr><td>Toy Story</td><td>3.0</td></tr>\n' +
+            '</table>\n' +
+            '<p>Amount owed is <em>19.0</em></p>\n' +
+            '<p>You earned <em>7</em> frequent renter points</p>'
+
+        expect(customer.statement(new HtmlFormatter())).toBe(expected);
     });
 });
