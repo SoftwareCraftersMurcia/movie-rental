@@ -1,6 +1,7 @@
 import {Movie} from "./movie";
 import {PriceCode} from "./priceCode";
 import {RegularPrice} from "./regularPrice";
+import {NewReleasePrice} from "./newReleasePrice";
 
 export class Rental {
 
@@ -18,8 +19,7 @@ export class Rental {
             case PriceCode.REGULAR:
                 return new RegularPrice().priceFor(this.daysRented);
             case PriceCode.NEW_RELEASE:
-                thisAmount = this.daysRented * 3;
-                break;
+                return new NewReleasePrice().priceFor(this.daysRented);
             case PriceCode.CHILDREN:
                 thisAmount = 1.5;
                 if (this.daysRented > 3) {
