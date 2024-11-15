@@ -2,7 +2,7 @@ import {Movie} from "./movie";
 import {Rental} from "./rental";
 
 function getFrequentPoints(rental: Rental) {
-  return rental.getFrequentPoints(rental);
+  return rental.getFrequentPoints();
 }
 
 export class Customer {
