@@ -1,6 +1,6 @@
 import {Customer} from "./customer";
-import {Rental} from "./rental";
+import {Rentals} from "./rentals";
 
 export interface Formatter {
-    format(customer: Customer, rentals: Rental[]): string;
+    format(customer: Customer, rentals: Rentals): string;
 }

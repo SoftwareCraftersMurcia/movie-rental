@@ -1,16 +1,17 @@
 import {Rental} from "./rental";
 import {Formatter} from "./formatter";
+import {Rentals} from "./rentals";
 
 export class Customer {
     private name: string;
-    private rentals: Rental[] = [];
+    private rentals: Rentals = new Rentals();
 
     public constructor(name: string) {
         this.name = name;
     }
 
     public addRental(arg: Rental) {
-        this.rentals.push(arg);
+        this.rentals.add(arg);
     }
 
     public getName(): string {
@@ -22,11 +23,11 @@ export class Customer {
     }
 
     public getFrequentRenterPoints() {
-        return this.rentals.reduce((acc, rental) => acc + rental.getFrequentPoints(), 0);
+        return this.rentals.getFrequentRenterPoints();
     }
 
     public getTotalAmount() {
-        return this.rentals.reduce((acc, rental) => acc + rental.getPrice(), 0);
+        return this.rentals.getTotalAmount();
     }
 
 }

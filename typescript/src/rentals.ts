@@ -1,0 +1,17 @@
+import {Rental} from "./rental";
+
+export class Rentals {
+    public rentals: Rental[] = [];
+
+    add(rental: Rental) {
+        this.rentals.push(rental);
+    }
+
+    getFrequentRenterPoints() {
+        return this.rentals.reduce((acc, rental) => acc + rental.getFrequentPoints(), 0);
+    }
+
+    getTotalAmount() {
+        return this.rentals.reduce((acc, rental) => acc + rental.getPrice(), 0)
+    }
+}
