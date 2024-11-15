@@ -1,5 +1,4 @@
 import {MovieType} from "./movieType";
-import {NewReleaseMovie} from "./newReleaseMovie";
 
 export class Movie {
     private readonly title: string;
@@ -19,11 +18,7 @@ export class Movie {
     }
 
     public getFrequentPoints(daysRented: number) {
-        if (this.movieType instanceof NewReleaseMovie && daysRented > 1) {
-            return 2;
-        } else {
-            return 1;
-        }
+        return this.movieType.pointsFor(daysRented);
     }
 }
 
