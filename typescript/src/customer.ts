@@ -1,4 +1,5 @@
 import {Rental} from "./rental";
+import {ConsoleFormatter} from "./consoleFormatter";
 
 export class Customer {
   private name: string;
@@ -17,29 +18,18 @@ export class Customer {
   }
 
   public statement(): string {
-    let result = "Rental Record for " + this.getName() + "\n";
+    return new ConsoleFormatter().format(this);
+     }
 
-    for (const rental of this.rentals) {
-      let thisAmount = 0;
-      thisAmount += rental.getPrice();
-      result +=
-        "\t" +
-        rental.getTitle() +
-        "\t" +
-        thisAmount.toFixed(1) +
-        "\n";
-    }
-    result += "Amount owed is " + this.getTotalAmount().toFixed(1) + "\n";
-    result += "You earned " + this.getFrequentRenterPoints() + " frequent renter points";
-
-    return result;
-  }
-
-  private getFrequentRenterPoints() {
+  public getFrequentRenterPoints() {
     return this.rentals.reduce((acc, rental) => acc + rental.getFrequentPoints(), 0);
   }
 
-  private getTotalAmount() {
+  public getTotalAmount() {
     return this.rentals.reduce((acc, rental) => acc + rental.getPrice(), 0);
   }
+
+    getRentals() {
+        return this.rentals;
+    }
 }
