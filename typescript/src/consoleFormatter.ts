@@ -1,11 +1,12 @@
 import {Customer} from "./customer";
 import {Formatter} from "./formatter";
+import {Rental} from "./rental";
 
 export class ConsoleFormatter implements Formatter {
-    format(customer: Customer) {
+    format(customer: Customer, rentals: Rental[]): string {
         let result = "Rental Record for " + customer.getName() + "\n";
 
-        for (const rental of customer.getRentals()) {
+        for (const rental of rentals) {
             result +=
                 "\t" +
                 rental.getTitle() +

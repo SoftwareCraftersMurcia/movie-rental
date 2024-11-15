@@ -18,7 +18,7 @@ export class Customer {
     }
 
     public statement(formatter: Formatter): string {
-        return formatter.format(this);
+        return formatter.format(this, this.rentals);
     }
 
     public getFrequentRenterPoints() {
@@ -29,7 +29,4 @@ export class Customer {
         return this.rentals.reduce((acc, rental) => acc + rental.getPrice(), 0);
     }
 
-    getRentals() {
-        return this.rentals;
-    }
 }
