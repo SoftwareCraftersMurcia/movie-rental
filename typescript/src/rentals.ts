@@ -1,7 +1,7 @@
 import {Rental} from "./rental";
 
 export class Rentals {
-    public rentals: Rental[] = [];
+    private rentals: Rental[] = [];
 
     add(rental: Rental) {
         this.rentals.push(rental);

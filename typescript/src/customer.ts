@@ -3,7 +3,7 @@ import {Formatter} from "./formatter";
 import {Rentals} from "./rentals";
 
 export class Customer {
-    private name: string;
+    private readonly name: string;
     private rentals: Rentals = new Rentals();
 
     public constructor(name: string) {

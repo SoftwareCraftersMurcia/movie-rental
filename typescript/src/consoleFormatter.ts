@@ -9,11 +9,8 @@ export class ConsoleFormatter implements Formatter {
 
         rentals.map((rental: Rental) => {
             result +=
-                "\t" +
-                rental.getTitle() +
-                "\t" +
-                rental.getPrice().toFixed(1) +
-                "\n";
+                "\t" + rental.getTitle() +
+                "\t" + rental.getPrice().toFixed(1) + "\n";
         })
         result += "Amount owed is " + rentals.getTotalAmount().toFixed(1) + "\n";
         result += "You earned " + rentals.getFrequentRenterPoints() + " frequent renter points";
