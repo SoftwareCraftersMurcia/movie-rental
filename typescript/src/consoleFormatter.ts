@@ -15,8 +15,8 @@ export class ConsoleFormatter implements Formatter {
                 rental.getPrice().toFixed(1) +
                 "\n";
         })
-        result += "Amount owed is " + customer.getTotalAmount().toFixed(1) + "\n";
-        result += "You earned " + customer.getFrequentRenterPoints() + " frequent renter points";
+        result += "Amount owed is " + rentals.getTotalAmount().toFixed(1) + "\n";
+        result += "You earned " + rentals.getFrequentRenterPoints() + " frequent renter points";
 
         return result;
 

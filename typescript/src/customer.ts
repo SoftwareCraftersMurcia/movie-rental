@@ -21,13 +21,4 @@ export class Customer {
     public statement(formatter: Formatter): string {
         return formatter.format(this, this.rentals);
     }
-
-    public getFrequentRenterPoints() {
-        return this.rentals.getFrequentRenterPoints();
-    }
-
-    public getTotalAmount() {
-        return this.rentals.getTotalAmount();
-    }
-
 }
