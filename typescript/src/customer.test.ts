@@ -4,15 +4,18 @@ import {Movie} from "./movie";
 import {ConsoleFormatter} from "./consoleFormatter";
 
 describe("Customer", () => {
-    it("should test", () => {
-        const customer = new Customer("Bob");
+    let customer: Customer;
+    beforeEach(() => {
+        customer = new Customer("Bob");
         customer.addRental(new Rental(new Movie("Jaws", Movie.REGULAR), 2));
         customer.addRental(new Rental(new Movie("Golden Eye", Movie.REGULAR), 3));
         customer.addRental(new Rental(new Movie("Short New", Movie.NEW_RELEASE), 1));
         customer.addRental(new Rental(new Movie("Long New", Movie.NEW_RELEASE), 2));
         customer.addRental(new Rental(new Movie("Bambi", Movie.CHILDRENS), 3));
         customer.addRental(new Rental(new Movie("Toy Story", Movie.CHILDRENS), 4));
+    });
 
+    it("should format using console format", () => {
         const expected = "" +
             "Rental Record for Bob\n" +
             "\tJaws\t2.0\n" +
