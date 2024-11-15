@@ -1,5 +1,6 @@
 import {Movie} from "./movie";
 import {PriceCode} from "./priceCode";
+import {RegularPrice} from "./regularPrice";
 
 export class Rental {
 
@@ -15,11 +16,7 @@ export class Rental {
         let thisAmount = 0;
         switch (this.movie.getPriceCode()) {
             case PriceCode.REGULAR:
-                thisAmount = 2;
-                if (this.daysRented > 2) {
-                    thisAmount += (this.daysRented - 2) * 1.5;
-                }
-                break;
+                return new RegularPrice().priceFor(this.daysRented);
             case PriceCode.NEW_RELEASE:
                 thisAmount = this.daysRented * 3;
                 break;
