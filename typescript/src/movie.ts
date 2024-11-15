@@ -13,10 +13,6 @@ export class Movie {
         this.price = price;
     }
 
-    public getPriceCode(): number {
-        return this.priceCode;
-    }
-
     public getPrice(numberOfDaysRented: number): number {
         return this.price.priceFor(numberOfDaysRented);
     }
