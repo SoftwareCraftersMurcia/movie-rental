@@ -4,10 +4,11 @@ import {Rentals} from "./rentals";
 
 export class Customer {
     private readonly name: string;
-    private readonly rentals: Rentals = new Rentals();
+    private readonly rentals: Rentals;
 
     public constructor(name: string) {
         this.name = name;
+        this.rentals = new Rentals();
     }
 
     public addRental(rental: Rental): void {

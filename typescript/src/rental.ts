@@ -1,7 +1,6 @@
 import {Movie} from "./movie";
 
 export class Rental {
-
     private readonly movie: Movie;
     private readonly daysRented: number;
 
