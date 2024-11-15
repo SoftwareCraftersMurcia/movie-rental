@@ -5,16 +5,15 @@ import {Rental} from "../rental";
 
 export class ConsoleFormatter implements Formatter {
     format(customer: Customer, rentals: Rentals): string {
-        let result = `Rental Record for ${customer.getName()}\n`;
-
-        result += rentals.map((rental: Rental): string =>
+        let formattedRentals = rentals.map((rental: Rental): string =>
             `\t${rental.getTitle()}` +
-            `\t${rental.getPrice().toFixed(1)}\n`)
-            .join('');
-        result += `Amount owed is ${rentals.getTotalAmount().toFixed(1)}\n`;
-        result += `You earned ${rentals.getFrequentRenterPoints()} frequent renter points`;
+            `\t${rental.getPrice().toFixed(1)}`);
 
-        return result;
-
+        return [
+            `Rental Record for ${customer.getName()}`,
+            ...formattedRentals,
+            `Amount owed is ${rentals.getTotalAmount().toFixed(1)}`,
+            `You earned ${rentals.getFrequentRenterPoints()} frequent renter points`
+        ].join('\n');
     }
 }
