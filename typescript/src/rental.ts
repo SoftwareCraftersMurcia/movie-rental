@@ -33,17 +33,14 @@ export class Rental {
     }
 
     public getFrequentPoints() {
-        if (
-            this.movie.getPriceCode() === Movie.NEW_RELEASE &&
-            this.daysRented > 1
-        ) {
+        if (this.movie.getPriceCode() === Movie.NEW_RELEASE && this.daysRented > 1) {
             return 2;
         } else {
             return 1;
         }
     }
 
-    getTitle() {
+    public getTitle() {
         return this.movie.getTitle();
     }
 }
