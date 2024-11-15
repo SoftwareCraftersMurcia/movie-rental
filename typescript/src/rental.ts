@@ -8,23 +8,26 @@ export class Rental {
 
     private readonly movie: Movie;
     private readonly daysRented: number;
+    private readonly price: RegularPrice;
 
     public constructor(movie: Movie, daysRented: number) {
         this.movie = movie;
         this.daysRented = daysRented;
+        switch (this.movie.getPriceCode()) {
+            case PriceCode.REGULAR:
+                this.price = new RegularPrice();
+                break;
+            case PriceCode.NEW_RELEASE:
+                this.price = new NewReleasePrice();
+                break;
+            case PriceCode.CHILDREN:
+                this.price = new ChildrenPrice();
+                break;
+        }
     }
 
     public getPrice() {
-        let thisAmount = 0;
-        switch (this.movie.getPriceCode()) {
-            case PriceCode.REGULAR:
-                return new RegularPrice().priceFor(this.daysRented);
-            case PriceCode.NEW_RELEASE:
-                return new NewReleasePrice().priceFor(this.daysRented);
-            case PriceCode.CHILDREN:
-                return new ChildrenPrice().priceFor(this.daysRented);
-        }
-        return thisAmount;
+        return this.price.priceFor(this.daysRented);
     }
 
     public getFrequentPoints() {
