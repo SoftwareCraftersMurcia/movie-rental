@@ -24,7 +24,7 @@ export class Customer {
       thisAmount += rental.getPrice();
       result +=
         "\t" +
-        rental.getMovie().getTitle() +
+        rental.getTitle() +
         "\t" +
         thisAmount.toFixed(1) +
         "\n";

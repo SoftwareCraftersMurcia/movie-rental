@@ -50,4 +50,8 @@ export class Rental {
             return 1;
         }
     }
+
+    getTitle() {
+        return this.movie.getTitle();
+    }
 }
