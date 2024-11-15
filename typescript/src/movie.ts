@@ -1,15 +1,13 @@
-import {PriceCode} from "./priceCode";
 import {RegularPrice} from "./regularPrice";
 import {Price} from "./price";
+import {NewReleasePrice} from "./newReleasePrice";
 
 export class Movie {
     private readonly title: string;
-    private readonly priceCode: PriceCode;
     private readonly price: RegularPrice;
 
-    public constructor(title: string, priceCode: PriceCode, price: Price) {
+    public constructor(title: string, price: Price) {
         this.title = title;
-        this.priceCode = priceCode;
         this.price = price;
     }
 
@@ -22,7 +20,7 @@ export class Movie {
     }
 
     public getFrequentPoints(daysRented: number) {
-        if (this.priceCode === PriceCode.NEW_RELEASE && daysRented > 1) {
+        if (this.price instanceof NewReleasePrice && daysRented > 1) {
             return 2;
         } else {
             return 1;
